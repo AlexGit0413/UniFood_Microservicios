@@ -101,32 +101,3 @@ UniFood/
 └── README.md
 ```
 
-## 9. Flujo de colaboración
-
-1. Realizar un fork del repositorio central.
-2. Clonar el fork en el equipo local.
-3. Crear una rama para desarrollar la funcionalidad asignada.
-4. Realizar los cambios y registrar los commits.
-5. Subir la rama al fork personal.
-6. Crear un Pull Request hacia el repositorio central.
-7. Esperar la revisión y aprobación del Pull Request antes de integrar los cambios.
-
-## 10. Estado del proyecto
-
-El proyecto se encuentra en la etapa de organización y configuración del repositorio.
-
-Las siguientes etapas contemplan el desarrollo de los microservicios, pruebas automatizadas, contenerización mediante Docker e integración continua con GitHub Actions.
-
-## 11. Información académica
-
-**Universidad:** Universidad Continental
-
-**Curso:** Cloud Computing
-
-**Actividad:** Producto Académico N.º 3
-
-**Proyecto:** UniFood
-
-**Lugar:** Cusco, Perú
-
-**Año:** 2026
