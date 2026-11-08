@@ -1,0 +1,12 @@
+{
+  "name": "unifood-pedidos",
+  "private": true,
+  "version": "0.1.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test"
+  },
+  "engines": {"node": ">=24 <25"},
+  "dependencies": {"express": "^5.1.0"}
+}
