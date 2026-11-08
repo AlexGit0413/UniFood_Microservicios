@@ -1,0 +1,30 @@
+name: UniFood CI
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v6
+      - name: Preparar Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+      - name: Instalar y probar los cuatro servicios
+        shell: bash
+        run: |
+          set -euo pipefail
+          for service in estudiantes validacion-universitaria menus pedidos; do
+            echo "=== $service ==="
+            (cd "services/$service" && npm ci && npm test)
+          done
+      - name: Validar Docker Compose
+        run: docker compose config -q
+      - name: Construir imágenes Docker
+        run: docker compose build

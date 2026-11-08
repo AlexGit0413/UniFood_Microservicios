@@ -1,0 +1,56 @@
+services:
+  estudiantes:
+    build: ./services/estudiantes
+    ports:
+      - "3001:3001"
+    environment:
+      PORT: "3001"
+      DB_PATH: /app/data/estudiantes.sqlite
+    volumes:
+      - estudiantes_data:/app/data
+
+  validacion-universitaria:
+    build: ./services/validacion-universitaria
+    ports:
+      - "3002:3002"
+    environment:
+      PORT: "3002"
+      DB_PATH: /app/data/validaciones.sqlite
+      ESTUDIANTES_URL: http://estudiantes:3001
+    volumes:
+      - validaciones_data:/app/data
+    depends_on:
+      - estudiantes
+
+  menus:
+    build: ./services/menus
+    ports:
+      - "3003:3003"
+    environment:
+      PORT: "3003"
+      DB_PATH: /app/data/menus.sqlite
+    volumes:
+      - menus_data:/app/data
+
+  pedidos:
+    build: ./services/pedidos
+    ports:
+      - "3004:3004"
+    environment:
+      PORT: "3004"
+      DB_PATH: /app/data/pedidos.sqlite
+      ESTUDIANTES_URL: http://estudiantes:3001
+      VALIDACIONES_URL: http://validacion-universitaria:3002
+      MENUS_URL: http://menus:3003
+    volumes:
+      - pedidos_data:/app/data
+    depends_on:
+      - estudiantes
+      - validacion-universitaria
+      - menus
+
+volumes:
+  estudiantes_data:
+  validaciones_data:
+  menus_data:
+  pedidos_data:
